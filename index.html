@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* 전체 폰트 및 배경 설정 (가독성 중심) */
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            margin: 0; 
+            display: flex; 
+            background-color: #f8f5f5; 
+            color: #333; 
+        }
+
+        /* 왼쪽 핫핑크 사이드바 (키치한 느낌 강조) */
+        .sidebar { 
+            width: 250px; 
+            background-color: #ff1493; /* 핫핑크 */
+            color: white; 
+            height: 100vh; 
+            padding: 40px 20px; 
+            position: fixed; 
+            box-sizing: border-box;
+        }
+        
+        .sidebar h1 { 
+            font-family: 'Courier New', Courier, monospace; /* 타자기 폰트 */
+            font-size: 32px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            transform: rotate(-3deg); /* 살짝 삐뚤어진 느낌 */
+            margin-bottom: 50px;
+        }
+
+        .nav-links { 
+            list-style: none; 
+            padding: 0; 
+        }
+
+        .nav-links li { 
+            margin-bottom: 25px; 
+            font-weight: 900; 
+            font-size: 18px; 
+            cursor: pointer; 
+            letter-spacing: 1px;
+        }
+
+        .nav-links li:hover { 
+            text-decoration: underline; 
+            text-decoration-style: wavy; /* 마우스 올렸을 때 물결 밑줄 */
+        }
+
+        /* SNS 링크 버튼 */
+        .sns-links { 
+            position: absolute; 
+            bottom: 40px; 
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sns-links a { 
+            color: #ff1493; 
+            background-color: white;
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 14px;
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            text-align: center;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .sns-links a:hover {
+            transform: scale(1.05);
+        }
+
+        /* 오른쪽 메인 콘텐츠 영역 (깔끔한 이력서/기록용) */
+        .main-content { 
+            margin-left: 250px; /* 사이드바 너비만큼 띄우기 */
+            padding: 60px; 
+            max-width: 800px; 
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 스크랩북 박스 디자인 */
+        .scrapbook-box { 
+            background: white; 
+            padding: 40px; 
+            border: 3px solid #111; 
+            box-shadow: 8px 8px 0px #ff1493; /* 핑크색 그림자 */
+            margin-bottom: 50px; 
+            position: relative; 
+        }
+
+        /* 테이프 효과 */
+        .tape { 
+            position: absolute; 
+            top: -15px; 
+            left: 50%; 
+            transform: translateX(-50%) rotate(-2deg); 
+            width: 120px; 
+            height: 35px; 
+            background-color: rgba(255, 255, 255, 0.7); 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2); 
+            border: 1px solid #ddd; 
+        }
+
+        .scrapbook-box h2 { 
+            font-family: 'Courier New', Courier, monospace; 
+            background-color: #111; 
+            color: white; 
+            display: inline-block; 
+            padding: 8px 20px; 
+            transform: rotate(1deg); 
+            margin-top: 0;
+        }
+
+        .scrapbook-box p {
+            line-height: 1.8;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h1>My Book</h1>
+        <ul class="nav-links">
+            <li>HOME</li>
+            <li>ABOUT ME</li>
+            <li>ACADEMICS</li>
+            <li>EXTRACURRICULARS</li>
+            <li>ARCHIVE</li>
+        </ul>
+        
+        <div class="sns-links">
+            <a href="인스타그램링크주소" target="_blank">Instagram</a>
+            <a href="링크드인링크주소" target="_blank">LinkedIn</a>
+            <a href="기타링크주소" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        
+        <div class="scrapbook-box">
+            <div class="tape"></div>
+            <h2>Hi, I'm [영문 이름] 💋</h2>
+            <p>Welcome to my digital portfolio. I am a student at <strong>HAFS (Hankuk Academy of Foreign Studies)</strong>, passionate about exploring the world through academics and extracurriculars. This space is a collection of my academic journey, leadership experiences, and personal memories.</p>
+        </div>
+
+        <div class="scrapbook-box">
+            <div class="tape"></div>
+            <h2>Current Focus</h2>
+            <p>Currently deep diving into <strong>AP World History</strong> research and tackling <strong>Calculus I</strong> challenges. When I'm not preparing for exams, you can find me brainstorming new creative projects or taking cute photos of my dog!</p>
+        </div>
+
+    </main>
+
+</body>
+</html>
