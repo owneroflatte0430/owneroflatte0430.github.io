@@ -1,165 +1,399 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>YEWON'S WORLD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <style>
-        /* 전체 폰트 및 배경 설정 (가독성 중심) */
-        body { 
-            font-family: 'Helvetica Neue', Arial, sans-serif; 
-            margin: 0; 
-            display: flex; 
-            background-color: #f8f5f5; 
-            color: #333; 
-        }
-
-        /* 왼쪽 핫핑크 사이드바 (키치한 느낌 강조) */
-        .sidebar { 
-            width: 250px; 
-            background-color: #ff1493; /* 핫핑크 */
-            color: white; 
-            height: 100vh; 
-            padding: 40px 20px; 
-            position: fixed; 
+        * {
             box-sizing: border-box;
-        }
-        
-        .sidebar h1 { 
-            font-family: 'Courier New', Courier, monospace; /* 타자기 폰트 */
-            font-size: 32px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            transform: rotate(-3deg); /* 살짝 삐뚤어진 느낌 */
-            margin-bottom: 50px;
+            margin: 0;
+            padding: 0;
         }
 
-        .nav-links { 
-            list-style: none; 
-            padding: 0; 
+        body {
+            background-color: #ff4aa0;
+            /* Y2K 감성의 격자 무늬 + 도트 배경 패턴 조합 */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.15) 2px, transparent 2px),
+                radial-gradient(rgba(0, 0, 0, 0.1) 15%, transparent 15%);
+            background-size: 40px 40px, 40px 40px, 20px 20px;
+            font-family: 'Arial', sans-serif;
+            color: #111;
+            padding: 40px 20px;
+            overflow-x: hidden;
         }
 
-        .nav-links li { 
-            margin-bottom: 25px; 
-            font-weight: 900; 
-            font-size: 18px; 
-            cursor: pointer; 
-            letter-spacing: 1px;
+        /* 스크랩북 전체 컨테이너 */
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        .nav-links li:hover { 
-            text-decoration: underline; 
-            text-decoration-style: wavy; /* 마우스 올렸을 때 물결 밑줄 */
-        }
-
-        /* SNS 링크 버튼 */
-        .sns-links { 
-            position: absolute; 
-            bottom: 40px; 
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .sns-links a { 
-            color: #ff1493; 
-            background-color: white;
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 14px;
-            padding: 8px 15px; 
-            border-radius: 20px; 
+        /* 메인 상단 타이틀: 매거진 컷아웃 스타일 */
+        .cutout-header {
             text-align: center;
+            margin-bottom: 50px;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        /* 잡지에서 글자 하나씩 오려붙인 효과 (BURN BOOK 스타일) */
+        .cutout-title {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            transform: rotate(-2deg);
+        }
+
+        .cutout-title span {
             display: inline-block;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 3rem;
+            padding: 10px 18px;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0px #000;
+            border: 3px solid #000;
             transition: transform 0.2s;
         }
 
-        .sns-links a:hover {
-            transform: scale(1.05);
+        /* 글자별로 다른 각도와 색상 배치 */
+        .cutout-title span:nth-child(1) { background: #000; color: #fff; transform: rotate(-5deg); }
+        .cutout-title span:nth-child(2) { background: #fff; color: #000; transform: rotate(4deg); }
+        .cutout-title span:nth-child(3) { background: #ff007f; color: #fff; transform: rotate(-3deg); }
+        .cutout-title span:nth-child(4) { background: #fff; color: #ff007f; transform: rotate(6deg); border-style: dashed; }
+        .cutout-title span:nth-child(5) { background: #000; color: #fff; transform: rotate(-4deg); }
+        .cutout-title span:nth-child(6) { background: #ffff00; color: #000; transform: rotate(3deg); }
+        .cutout-title span:nth-child(7) { background: #fff; color: #000; transform: rotate(-6deg); }
+        .cutout-title span:nth-child(8) { background: #ff007f; color: #fff; transform: rotate(5deg); }
+        .cutout-title span:nth-child(9) { background: #000; color: #ffff00; transform: rotate(-2deg); }
+        .cutout-title span:nth-child(10) { background: #fff; color: #000; transform: rotate(4deg); }
+        .cutout-title span:nth-child(11) { background: #00ffff; color: #000; transform: rotate(-3deg); }
+        .cutout-title span:nth-child(12) { background: #000; color: #fff; transform: rotate(2deg); }
+
+        .cutout-title span:hover {
+            transform: scale(1.2) rotate(0deg) !important;
+            z-index: 10;
         }
 
-        /* 오른쪽 메인 콘텐츠 영역 (깔끔한 이력서/기록용) */
-        .main-content { 
-            margin-left: 250px; /* 사이드바 너비만큼 띄우기 */
-            padding: 60px; 
-            max-width: 800px; 
+        /* 메인 레이아웃 (좌측 프로필 / 우측 디테일) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: 320px 1fr;
+            }
+        }
+
+        /* 스크랩북 개별 카드 공통 팝 스타일 */
+        .scrap-card {
+            background: #fff;
+            border: 3px solid #000;
+            box-shadow: 8px 8px 0px #000;
+            padding: 30px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* 마스킹 테이프 데코 데코레이션 */
+        .tape {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 140px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(1px);
+            border-left: 2px dashed rgba(0,0,0,0.2);
+            border-right: 2px dashed rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .tape.purple { background: rgba(218, 172, 255, 0.7); top: -10px; left: 20px; transform: rotate(-10deg); }
+        .tape.pink { background: rgba(255, 142, 206, 0.8); top: -12px; right: 20px; left: auto; transform: rotate(15deg); }
+
+        /* 프로필 섹션 (왼쪽) */
+        .profile-section {
+            transform: rotate(-1deg);
+        }
+
+        /* 폴라로이드 사진 프레임 */
+        .polaroid-frame {
+            background: #fdfdfd;
+            border: 2px solid #111;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.15);
+            transform: rotate(3deg);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .polaroid-img-placeholder {
             width: 100%;
-            box-sizing: border-box;
+            height: 250px;
+            background: #ffc2df;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.5rem;
+            color: #ff007f;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* 스크랩북 박스 디자인 */
-        .scrapbook-box { 
-            background: white; 
-            padding: 40px; 
-            border: 3px solid #111; 
-            box-shadow: 8px 8px 0px #ff1493; /* 핑크색 그림자 */
-            margin-bottom: 50px; 
-            position: relative; 
+        /* 폴라로이드 속 낙서 */
+        .polaroid-caption {
+            font-family: 'Nanum Pen Script', cursive;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-top: 15px;
+            color: #000;
+            font-weight: bold;
         }
 
-        /* 테이프 효과 */
-        .tape { 
-            position: absolute; 
-            top: -15px; 
-            left: 50%; 
-            transform: translateX(-50%) rotate(-2deg); 
-            width: 120px; 
-            height: 35px; 
-            background-color: rgba(255, 255, 255, 0.7); 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2); 
-            border: 1px solid #ddd; 
+        /* 손글씨 스타일 서브헤더 */
+        .handwritten-title {
+            font-family: 'Permanent Marker', Arial, sans-serif;
+            font-size: 1.8rem;
+            color: #ff007f;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 0px #000;
+            display: inline-block;
+            border-bottom: 3px dashed #000;
+            padding-bottom: 5px;
         }
 
-        .scrapbook-box h2 { 
-            font-family: 'Courier New', Courier, monospace; 
-            background-color: #111; 
-            color: white; 
-            display: inline-block; 
-            padding: 8px 20px; 
-            transform: rotate(1deg); 
-            margin-top: 0;
-        }
-
-        .scrapbook-box p {
+        /* 리얼 스크랩북 내용 텍스트 리스트 */
+        .scrap-list {
+            list-style: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 1rem;
             line-height: 1.8;
-            font-size: 16px;
+        }
+
+        .scrap-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        /* 리스트 앞의 키치한 별 스티커 불릿 */
+        .scrap-list li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #ffea00;
+            -webkit-text-stroke: 1px #000;
+            font-size: 1.2rem;
+        }
+
+        /* 우측 메인 스트림 */
+        .main-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* 대각선 줄무늬가 있는 스페셜 카드 배경 */
+        .pattern-card {
+            background: #fff4fa;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 0, 127, 0.03) 10px, rgba(255, 0, 127, 0.03) 20px);
+            transform: rotate(0.5deg);
+        }
+
+        /* 입술 마크 오버레이 그래픽 (순수 CSS & SVG 활용) */
+        .kiss-mark {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            width: 70px;
+            height: 45px;
+            opacity: 0.85;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        /* 섹션 내 강조 박스 (Talk to the hand 감성) */
+        .highlight-box {
+            background: #000;
+            color: #fff;
+            padding: 15px;
+            font-family: 'Impact', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+            transform: rotate(-1deg);
+            margin: 20px 0;
+            box-shadow: 4px 4px 0 #ff007f;
+        }
+
+        /* SNS & 링크 버튼 스타일 */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-y2k {
+            display: block;
+            text-align: center;
+            background: #ffff00;
+            color: #000;
+            font-family: 'Permanent Marker', sans-serif;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 12px;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            transform: rotate(1deg);
+            transition: all 0.1s;
+        }
+
+        .btn-y2k:nth-child(even) {
+            background: #00ffff;
+            transform: rotate(-2deg);
+        }
+
+        .btn-y2k:hover {
+            transform: translate(4px, 4px) rotate(0deg);
+            box-shadow: 0px 0px 0px #000;
+        }
+
+        /* 화면 곳곳에 떠다니는 스티커 데코 효과 */
+        .sticker {
+            position: absolute;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.3rem;
+            padding: 6px 12px;
+            border: 2px solid #000;
+            background: #fff;
+            box-shadow: 3px 3px 0 #000;
+            z-index: 5;
+            user-select: none;
+        }
+        
+        .sticker.star1 { top: 20px; left: -10px; background: #ffff00; transform: rotate(-15deg); }
+        .sticker.star2 { bottom: -20px; right: 10px; background: #00ffff; transform: rotate(15deg); }
+        .sticker.hot { top: -25px; right: -10px; background: #ff007f; color: #fff; transform: rotate(10deg); font-size: 1.5rem; }
+
+        /* 한국어 손글씨 메모 패드 효과 */
+        .memo-pad {
+            background: #ffffcc;
+            border: 1px solid #ddd;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.08);
+            padding: 20px;
+            font-family: 'Nanum Pen Script', cursive;
+            font-size: 1.8rem;
+            line-height: 1.4;
+            color: #222;
+            transform: rotate(2deg);
+            position: relative;
+        }
+        .memo-pad::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 10px;
+            background: rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
 <body>
 
-    <nav class="sidebar">
-        <h1>My Book</h1>
-        <ul class="nav-links">
-            <li>HOME</li>
-            <li>ABOUT ME</li>
-            <li>ACADEMICS</li>
-            <li>EXTRACURRICULARS</li>
-            <li>ARCHIVE</li>
-        </ul>
+    <div class="wrapper">
+        <div class="sticker star1">★THAT'S HOT★</div>
         
-        <div class="sns-links">
-            <a href="인스타그램링크주소" target="_blank">Instagram</a>
-            <a href="링크드인링크주소" target="_blank">LinkedIn</a>
-            <a href="기타링크주소" target="_blank">GitHub</a>
-        </div>
-    </nav>
+        <header class="cutout-header">
+            <div class="cutout-title">
+                <span>y</span><span>e</span><span>w</span><span>o</span><span>n</span><span>'</span><span>s</span>
+                <span>w</span><span>o</span><span>r</span><span>l</span><span>d</span>
+            </div>
+        </header>
 
-    <main class="main-content">
-        
-        <div class="scrapbook-box">
-            <div class="tape"></div>
-            <h2>Hi, I'm [영문 이름] 💋</h2>
-            <p>Welcome to my digital portfolio. I am a student at <strong>HAFS (Hankuk Academy of Foreign Studies)</strong>, passionate about exploring the world through academics and extracurriculars. This space is a collection of my academic journey, leadership experiences, and personal memories.</p>
-        </div>
+        <div class="grid-container">
+            
+            <aside class="profile-section">
+                <div class="scrap-card">
+                    <div class="tape purple"></div>
+                    
+                    <div class="polaroid-frame">
+                        <div class="polaroid-img-placeholder">
+                            PHOTO HERE!
+                            <svg class="kiss-mark" viewBox="0 0 100 100">
+                                <path d="M10,50 C25,30 75,30 90,50 C75,42 25,42 10,50 Z" fill="#ff0055"/>
+                                <path d="M10,54 C25,72 75,72 90,54 C75,60 25,60 10,54 Z" fill="#d00044"/>
+                            </svg>
+                        </div>
+                        <div class="polaroid-caption">♡ yewonk.io ♡</div>
+                    </div>
 
-        <div class="scrapbook-box">
-            <div class="tape"></div>
-            <h2>Current Focus</h2>
-            <p>Currently deep diving into <strong>AP World History</strong> research and tackling <strong>Calculus I</strong> challenges. When I'm not preparing for exams, you can find me brainstorming new creative projects or taking cute photos of my dog!</p>
-        </div>
+                    <h2 class="handwritten-title">PROFILE</h2>
+                    <ul class="scrap-list">
+                        <li>HAFS 21st Student</li>
+                        <li>Global Course ⚡</li>
+                        <li>Based in South Korea</li>
+                    </ul>
+                </div>
 
-    </main>
+                <div class="memo-pad">
+                    📌 오늘의 메모:<br>
+                    기숙사 밥 말고 학교 플라자 벤치에서 먹는 게 요즘 낙임.. 🌿 날씨 최고! 코드 짜기 귀찮지만 배포 성공하니까 뿌듯하네ㅋㅋ
+                </div>
+            </aside>
+
+            <main class="main-stream">
+                <div class="sticker hot">AS IF!</div>
+
+                <section class="scrap-card pattern-card">
+                    <div class="tape pink"></div>
+                    <h2 class="handwritten-title">ACADEMICS & LOGS</h2>
+                    
+                    <div class="highlight-box">
+                        ⚠️ WARNING: NERD ZONE INSIDE ⚠️
+                    </div>
+
+                    <ul class="scrap-list">
+                        <li><strong>AP World History:</strong> Haudenosaunee(롱하우스의 사람들) 연맹 체제 정치적 통합력 탐구 완료 📜</li>
+                        <li><strong>Calculus I (미적분학 I):</strong> 음함수 미분법, 직교곡선, 입실론-델타 논법 증명 뿌시기 📐</li>
+                        <li><strong>SAT/Advanced Vocab:</strong> 수백 개 단어 마스터링 중 🔥</li>
+                    </ul>
+                </section>
+
+                <section class="scrap-card">
+                    <div class="tape"></div>
+                    <h2 class="handwritten-title">MY REELS & PLAYLIST</h2>
+                    <p style="font-family: 'Courier New', monospace; font-weight: bold; margin-bottom: 15px; font-size: 0.95rem;">
+                        >> LOADING CONTENT_LOG_0615.EXE...
+                    </p>
+                    
+                    <ul class="scrap-list">
+                        <li>축구/스포츠 경기 분석 영상 쇼츠 & 릴스 제작 기획 ⚽</li>
+                        <li>Y2K 무드 비디오 템플릿 레이아웃 스터디 중</li>
+                        <li>하이틴 감성 핫핑크 컬러 팔레트 커스텀 웹 빌드 브랜치 활성화 완료</li>
+                    </ul>
+
+                    <div class="social-grid">
+                        <a href="https://github.com/ownerofflatte0430" target="_blank" class="btn-y2k">GITHUB</a>
+                        <a href="#" class="btn-y2k">INSTA REELS</a>
+                        <a href="#" class="btn-y2k">MY DIARY</a>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
 
 </body>
 </html>
